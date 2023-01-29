@@ -333,11 +333,11 @@ RECIPE("sinter-chromium"):add_ingredient({type = "fluid", name = "pressured-air"
 RECIPE("reduction-chromium"):add_ingredient({type = "fluid", name = "pressured-air", amount = 100})
 
 RECIPE("crushed-coal"):change_category('secondary-crusher')
-RECIPE("coarse-coal-to-coal"):change_category('secondary-crusher')
+--RECIPE("coarse-coal-to-coal"):change_category('secondary-crusher')
 RECIPE("coarse-coal"):change_category('screener')
 RECIPE("coal-pulp-02"):add_ingredient({type = "fluid", name = "pressured-air", amount = 150})
 RECIPE("coal-slime-overflow"):change_category('thickener'):replace_ingredient('organic-solvent', 'industrial-solvent')
-RECIPE("coal-pulp-05-refining"):add_ingredient({type = "fluid", name = "pressured-air", amount = 150})
+RECIPE("coal-pulp-05-refining"):add_ingredient({type = "fluid", name = "pressured-air", amount = 50})
 
 RECIPE("quench-redcoke"):add_ingredient({type = "fluid", name = "pressured-air", amount = 150})
 
@@ -420,9 +420,9 @@ RECIPE("chromite-pulp-05"):add_ingredient({type = "fluid", name = "pressured-air
 RECIPE("chromite-pulp-06"):add_ingredient({type = "fluid", name = "pressured-air", amount = 150})
 RECIPE("chromite-pulp-07"):change_category('thickener')
 RECIPE("coal-fines"):change_category('jig')
-RECIPE("coal-pulp-01"):add_ingredient({type = "fluid", name = "pressured-air", amount = 150})
+RECIPE("coal-pulp-01"):add_ingredient({type = "fluid", name = "pressured-air", amount = 50})
 RECIPE("coal-pulp-04"):change_category('jig')
-RECIPE("coal-pulp-05"):add_ingredient({type = "fluid", name = "pressured-air", amount = 150})
+RECIPE("coal-pulp-05"):add_ingredient({type = "fluid", name = "pressured-air", amount = 50})
 RECIPE("conditioned-fines"):change_category('pan')
 RECIPE("copper-pulp-01"):add_ingredient({type = "fluid", name = "grease", amount =10})
 RECIPE("copper-solution"):change_category("mixer")

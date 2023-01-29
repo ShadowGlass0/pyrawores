@@ -1,24 +1,3 @@
-RECIPE {
-    type = "recipe",
-    name = "coal-pulp-03",
-    category = "scrubber",
-    enabled = false,
-    energy_required = 3,
-    ingredients = {
-        {type = "fluid", name = "coal-under-pulp", amount = 100},
-        {type = "fluid", name = "water", amount = 100},
-        {type = "fluid", name = "kerosene", amount = 50},
-        {type = "item", name = "sand", amount = 10},
-    },
-    results = {
-        {type = "fluid", name = "coal-pulp-03", amount = 100},
-    },
-    main_product = "coal-pulp-03",
-    subgroup = "py-rawores-coal",
-    order = "q-2"
-}:add_unlock("coal-mk03")
-
-
 FLUID {
     type = "fluid",
     name = "coal-pulp-03",

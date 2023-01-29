@@ -4,7 +4,7 @@ RECIPE {
     name = "distilled-raw-coal",
     category = "distilator",
     enabled = true,
-    energy_required = 2,
+    energy_required = 3,
     ingredients = {
         {type = "item", name = "raw-coal", amount = 10}
     },
@@ -30,12 +30,12 @@ RECIPE {
     enabled = false,
     energy_required = 3,
     ingredients = {
-        {type = "item", name = "raw-coal", amount = 3}
+        {type = "item", name = "raw-coal", amount = 5}
     },
     results = {
-        {type = "item", name = "crushed-coal", amount = 1},
+        {type = "item", name = "crushed-coal", amount = 3},
         {type = "item", name = "coal", amount = 2},
-        {type = "item", name = "coal-dust", amount = 1, probability = 0.3}
+        {type = "item", name = "coal-dust", amount = 1, probability = 0.5}
     },
     main_product = "crushed-coal",
     icon = "__pyraworesgraphics__/graphics/icons/recrush-coal.png",
@@ -43,17 +43,39 @@ RECIPE {
     subgroup = "py-rawores-coal",
 }:add_unlock("coal-mk01")
 
+
 RECIPE {
     type = "recipe",
-    name = "coarse-coal-to-coal",
-    category = "crusher",
+    name = "crushed-coal-to-coal",
+    category = "washer",
     enabled = false,
-    energy_required = 3,
+    energy_required = 4,
     ingredients = {
-        {type = "item", name = "coarse-coal", amount = 3}
+        {type = "item", name = "crushed-coal", amount = 5},
+        {type = "fluid", name = "water", amount = 100}
     },
     results = {
         {type = "item", name = "coal", amount = 4},
+        {type = "fluid", name = "coal-slurry", amount = 100},
+    },
+    main_product = "coal",
+    subgroup = "py-rawores-coal",
+}:add_unlock("coal-mk01")
+
+
+RECIPE {
+    type = "recipe",
+    name = "coarse-coal-to-coal",
+    category = "washer",
+    enabled = false,
+    energy_required = 4,
+    ingredients = {
+        {type = "item", name = "coarse-coal", amount = 3},
+        {type = "fluid", name = "water", amount = 100}
+    },
+    results = {
+        {type = "item", name = "coal", amount = 5},
+        {type = "fluid", name = "coal-slurry", amount = 100},
     },
     main_product = "coal",
     subgroup = "py-rawores-coal",
@@ -64,25 +86,49 @@ RECIPE {
     name = "coarse-coal",
     category = "solid-separator",
     enabled = false,
-    energy_required = 2,
+    energy_required = 5,
     ingredients = {
-        {type = "item", name = "crushed-coal", amount = 2}
+        {type = "item", name = "crushed-coal", amount = 4}
     },
     results = {
-        {type = "item", name = "coarse-coal", amount = 1},
-        {type = "item", name = "coal", amount = 4},
+        {type = "item", name = "coarse-coal", amount = 3},
+        {type = "item", name = "coarse-coal", amount = 1, probability = 0.5},
+        {type = "item", name = "coal", amount = 1},
         {type = "item", name = "coal-dust", amount = 1, probability = 0.3}
     },
     main_product = "coarse-coal",
     subgroup = "py-rawores-coal",
 }:add_unlock("coal-mk02")
 
+-- MK03
+
+RECIPE {
+    type = "recipe",
+    name = "fines-pulp",
+    category = "chemistry",
+    enabled = false,
+    energy_required = 5,
+    ingredients = {
+        {type = "fluid", name = "water", amount = 100},
+        {type = "fluid", name = "organic-solvent", amount = 10},
+        {type = "item", name = "coarse-coal", amount = 3},
+    },
+    results = {
+        {type = "fluid", name = "fines-pulp", amount = 40},
+        {type = "fluid", name = "high-ash-fines", amount = 25},
+        {type = "fluid", name = "coal-slurry", amount = 60},
+    },
+    main_product = "fines-pulp",
+    subgroup = "py-rawores-coal",
+    order = "q-2"
+}:add_unlock("coal-mk03")
+
 RECIPE {
     type = "recipe",
     name = "coarse-to-coal",
     category = "evaporator",
     enabled = false,
-    energy_required = 4,
+    energy_required = 8,
     ingredients = {
         {type = "fluid", name = "fines-pulp", amount = 100}
     },
@@ -93,46 +139,6 @@ RECIPE {
     subgroup = "py-rawores-coal",
 }:add_unlock("coal-mk03")
 
-RECIPE {
-    type = "recipe",
-    name = "filter-coal-pulp-01",
-    category = "carbonfilter",
-    enabled = false,
-    energy_required = 3,
-    ingredients = {
-        {type = "item", name = "biofilm", amount = 1},
-        {type = "fluid", name = "coal-pulp-01", amount = 150},
-        {type = "fluid", name = "water", amount = 200},
-    },
-    results = {
-        {type = "item", name = "coal", amount = 40},
-    },
-    main_product = "coal",
-    subgroup = "py-rawores-coal",
-}:add_unlock("coal-mk04")
-
-RECIPE {
-    type = "recipe",
-    name = "coal-pulp-02",
-    category = "flotation",
-    enabled = false,
-    energy_required = 3,
-    ingredients = {
-        {type = "fluid", name = "coal-pulp-02", amount = 100},
-        {type = "fluid", name = "slacked-lime", amount = 100},
-        --pyFE air
-    },
-    results = {
-        {type = "fluid", name = "high-ash-fines", amount = 30},
-        {type = "fluid", name = "conditioned-fines", amount = 50},
-        {type = "fluid", name = "dirty-water-heavy", amount = 100},
-        {type = "item", name = "pyrite", amount = 1, probability = 0.4},
-    },
-    main_product = "conditioned-fines",
-    subgroup = "py-rawores-coal",
-}:add_unlock("coal-mk04")
-
-
 --HIGH ASH FINES RECLAMATION
 
 RECIPE {
@@ -140,7 +146,7 @@ RECIPE {
     name = "high-ash-fines-reclamation",
     category = "hydroclassifier",
     enabled = false,
-    energy_required = 3,
+    energy_required = 5,
     ingredients = {
         {type = "fluid", name = "high-ash-fines", amount = 100},
     },
@@ -164,7 +170,7 @@ RECIPE {
     },
     results = {
         {type = "fluid", name = "refsyngas", amount = 300},
-        {type = "fluid", name = "dirty-water-heavy", amount = 300},
+        {type = "fluid", name = "dirty-water-heavy", amount = 100},
     },
     main_product = "refsyngas",
     subgroup = "py-rawores-coal",
@@ -173,10 +179,71 @@ RECIPE {
 
 RECIPE {
     type = "recipe",
+    name = "coal-pulp-03",
+    category = "scrubber",
+    enabled = false,
+    energy_required = 10,
+    ingredients = {
+        {type = "fluid", name = "coal-under-pulp", amount = 100},
+        {type = "fluid", name = "water", amount = 100},
+        {type = "fluid", name = "kerosene", amount = 50},
+        {type = "item", name = "sand", amount = 10},
+    },
+    results = {
+        {type = "fluid", name = "coal-pulp-03", amount = 100},
+    },
+    main_product = "coal-pulp-03",
+    subgroup = "py-rawores-coal",
+    order = "q-2"
+}:add_unlock("coal-mk03")
+
+RECIPE {
+    type = "recipe",
+    name = "coal-pulp-04",
+    category = "chemistry", --pyfe Jig
+    enabled = false,
+    energy_required = 8,
+    ingredients = {
+        {type = "fluid", name = "water", amount = 100},
+        {type = "fluid", name = "coal-pulp-03", amount = 100},
+        {type = "item", name = "pyrite", amount = 1},
+    },
+    results = {
+        {type = "fluid", name = "coal-slurry", amount = 50},
+        {type = "fluid", name = "coal-pulp-04", amount = 100},
+        {type = "item", name = "ash", amount = 20},
+    },
+    main_product = "coal-pulp-04",
+    subgroup = "py-rawores-coal",
+    order = "q-2"
+}:add_unlock("coal-mk03")
+
+RECIPE {
+    type = "recipe",
+    name = "coal-pulp-05",
+    category = "flotation",
+    enabled = false,
+    energy_required = 5,
+    ingredients = {
+        {type = "fluid", name = "coal-pulp-04", amount = 100},
+        {type = "fluid", name = "methanol", amount = 30},
+        --pyfe pressured air
+    },
+    results = {
+        {type = "fluid", name = "coal-pulp-05", amount = 100},
+        {type = "item", name = "coal", amount = 13},
+    },
+    main_product = "coal-pulp-05",
+    subgroup = "py-rawores-coal",
+    order = "q-2"
+}:add_unlock("coal-mk03")
+
+RECIPE {
+    type = "recipe",
     name = "coal-pulp-05-refining",
     category = "flotation",
     enabled = false,
-    energy_required = 3,
+    energy_required = 6,
     ingredients = {
         {type = "fluid", name = "coal-pulp-05", amount = 100},
         {type = "fluid", name = "tar", amount = 100},
@@ -190,3 +257,125 @@ RECIPE {
     main_product = "coal",
     subgroup = "py-rawores-coal",
 }:add_unlock("coal-mk03")
+
+-- MK04
+
+RECIPE {
+    type = "recipe",
+    name = "thickened-coal-fines",
+    category = "hydroclassifier",
+    enabled = false,
+    energy_required = 2,
+    ingredients = {
+        {type = "fluid", name = "fines-pulp", amount = 100},
+        {type = "fluid", name = "water", amount = 100},
+    },
+    results = {
+        {type = "fluid", name = "thickened-coal-fines", amount = 100},
+        {type = "fluid", name = "high-ash-fines", amount = 10},
+        {type = "fluid", name = "dirty-water-heavy", amount = 100},
+        {type = "item", name = "coal", amount = 6},
+    },
+    main_product = "thickened-coal-fines",
+    subgroup = "py-rawores-coal",
+    order = "q-2"
+}:add_unlock("coal-mk04")
+
+RECIPE {
+    type = "recipe",
+    name = "coal-fines",
+    category = "chemistry",
+    enabled = false,
+    energy_required = 2,
+    ingredients = {
+        {type = "fluid", name = "thickened-coal-fines", amount = 100},
+        {type = "fluid", name = "water", amount = 100},
+    },
+    results = {
+        {type = "fluid", name = "coal-fines", amount = 100},
+        {type = "fluid", name = "high-ash-fines", amount = 20},
+        {type = "item", name = "pyrite", amount = 1},
+    },
+    main_product = "coal-fines",
+    subgroup = "py-rawores-coal",
+    order = "q-2"
+}:add_unlock("coal-mk04")
+
+RECIPE {
+    type = "recipe",
+    name = "conditioned-fines",
+    category = "chemistry",
+    enabled = false,
+    energy_required = 3,
+    ingredients = {
+        {type = "fluid", name = "coal-fines", amount = 100},
+        {type = "fluid", name = "kerosene", amount = 50},
+    },
+    results = {
+        {type = "fluid", name = "conditioned-fines", amount = 100},
+        {type = "fluid", name = "dirty-water-heavy", amount = 50},
+    },
+    main_product = "conditioned-fines",
+    subgroup = "py-rawores-coal",
+    order = "q-2"
+}:add_unlock("coal-mk04")
+
+RECIPE {
+    type = "recipe",
+    name = "coal-pulp-01",
+    category = "flotation",
+    enabled = false,
+    energy_required = 3,
+    ingredients = {
+        {type = "fluid", name = "conditioned-fines", amount = 100},
+        {type = "fluid", name = "xylenol", amount = 100},
+        --pyFE air
+    },
+    results = {
+        {type = "fluid", name = "coal-pulp-01", amount = 50},
+        {type = "fluid", name = "coal-pulp-02", amount = 50},
+        {type = "fluid", name = "dirty-water-heavy", amount = 50},
+    },
+    main_product = "coal-pulp-01",
+    subgroup = "py-rawores-coal",
+    order = "q-2"
+}:add_unlock("coal-mk04")
+
+RECIPE {
+    type = "recipe",
+    name = "filter-coal-pulp-01",
+    category = "carbonfilter",
+    enabled = false,
+    energy_required = 3,
+    ingredients = {
+        {type = "item", name = "biofilm", amount = 1},
+        {type = "fluid", name = "coal-pulp-01", amount = 150},
+        {type = "fluid", name = "water", amount = 200},
+    },
+    results = {
+        {type = "item", name = "coal", amount = 20},
+    },
+    main_product = "coal",
+    subgroup = "py-rawores-coal",
+}:add_unlock("coal-mk04")
+
+RECIPE {
+    type = "recipe",
+    name = "coal-pulp-02",
+    category = "flotation",
+    enabled = false,
+    energy_required = 3,
+    ingredients = {
+        {type = "fluid", name = "coal-pulp-02", amount = 100},
+        {type = "fluid", name = "slacked-lime", amount = 100},
+        --pyFE air
+    },
+    results = {
+        {type = "fluid", name = "high-ash-fines", amount = 20},
+        {type = "fluid", name = "conditioned-fines", amount = 50},
+        {type = "fluid", name = "dirty-water-heavy", amount = 100},
+        {type = "item", name = "pyrite", amount = 1, probability = 0.4},
+    },
+    main_product = "conditioned-fines",
+    subgroup = "py-rawores-coal",
+}:add_unlock("coal-mk04")

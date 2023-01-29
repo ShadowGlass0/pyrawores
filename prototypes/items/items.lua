@@ -848,7 +848,7 @@ ITEM {
     flags = {},
     subgroup = 'py-rawores-coal',
     order = 'aab',
-    fuel_value = '6MJ',
+    fuel_value = '4MJ',
     fuel_category = 'chemical',
     stack_size = 100
 }
@@ -861,7 +861,7 @@ ITEM {
     flags = {},
     subgroup = 'py-rawores-coal',
     order = 'aac',
-    fuel_value = '10MJ',
+    fuel_value = '8MJ',
     fuel_category = 'chemical',
     stack_size = 100
 }

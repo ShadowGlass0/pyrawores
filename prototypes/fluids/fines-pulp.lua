@@ -1,24 +1,3 @@
-RECIPE {
-    type = "recipe",
-    name = "fines-pulp",
-    category = "chemistry",
-    enabled = false,
-    energy_required = 2,
-    ingredients = {
-        {type = "fluid", name = "water", amount = 100},
-        {type = "fluid", name = "organic-solvent", amount = 50},
-        {type = "item", name = "coarse-coal", amount = 3},
-    },
-    results = {
-        {type = "fluid", name = "fines-pulp", amount = 40},
-        {type = "fluid", name = "high-ash-fines", amount = 25},
-    },
-    main_product = "fines-pulp",
-    subgroup = "py-rawores-coal",
-    order = "q-2"
-}:add_unlock("coal-mk03")
-
-
 FLUID {
     type = "fluid",
     name = "fines-pulp",
