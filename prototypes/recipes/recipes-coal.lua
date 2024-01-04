@@ -116,7 +116,7 @@ RECIPE {
     results = {
         {type = "fluid", name = "fines-pulp", amount = 40},
         {type = "fluid", name = "high-ash-fines", amount = 25},
-        {type = "fluid", name = "coal-slurry", amount = 60},
+--TODO        {type = "fluid", name = "coal-slurry", amount = 60},
     },
     main_product = "fines-pulp",
     subgroup = "py-rawores-coal",
